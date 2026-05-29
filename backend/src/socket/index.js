@@ -1,0 +1,33 @@
+import { Server } from 'socket.io';
+import { createAdapter } from '@socket.io/redis-adapter';
+import { redisPub, redisSub, connectRedis } from '../config/redis.js';
+import { socketAuth } from './middleware/socket.auth.js';
+import { registerRoomHandlers }   from './handlers/room.handler.js';
+import { registerCanvasHandlers } from './handlers/canvas.handler.js';
+import { registerCursorHandlers } from './handlers/cursor.handler.js';
+
+export const initSocket = async (httpServer, clientOrigins) => {
+  await connectRedis();
+
+  const io = new Server(httpServer, {
+    cors: { origin: clientOrigins, credentials: true }
+  });
+
+  io.adapter(createAdapter(redisPub, redisSub));
+
+  io.use(socketAuth);
+
+  io.on('connection', (socket) => {
+    console.log(`Socket connected: ${socket.id} | user: ${socket.user.username}`);
+
+    registerRoomHandlers(io, socket);
+    registerCanvasHandlers(io, socket);
+    registerCursorHandlers(io, socket);
+
+    socket.on('disconnect', () => {
+      console.log(`Socket disconnected: ${socket.id}`);
+    });
+  });
+
+  return io;
+};
