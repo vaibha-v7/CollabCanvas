@@ -18,7 +18,8 @@ export const initSocket = async (httpServer, clientOrigins) => {
   io.use(socketAuth);
 
   io.on('connection', (socket) => {
-    console.log(`Socket connected: ${socket.id} | user: ${socket.user.username}`);
+    const username = socket.user?.username ?? 'unknown';
+    console.log(`Socket connected: ${socket.id} | user: ${username}`);
 
     registerRoomHandlers(io, socket);
     registerCanvasHandlers(io, socket);

@@ -7,6 +7,7 @@ export const socketAuth = async (socket, next) => {
   try {
     const { id } = verifyToken(token);
     socket.user = await User.findById(id).select('-passwordHash');
+    if (!socket.user) return next(new Error('User not found'));
     next();
   } catch {
     next(new Error('Invalid token'));
