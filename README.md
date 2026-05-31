@@ -19,6 +19,7 @@ CollabCanvas is a real-time collaborative whiteboard app for creating shared roo
 - Frontend: React, Vite, Tailwind CSS, React Router, Konva, Socket.IO Client, Axios
 - Backend: Node.js, Express, Socket.IO, MongoDB, Mongoose, Redis, JWT, bcrypt
 - Realtime: Socket.IO with Redis adapter
+- Infrastructure: Docker, Docker Compose, Nginx
 
 ## Project Structure
 
@@ -130,6 +131,27 @@ The backend health check is:
 
 ```text
 http://localhost:5000/api/health
+```
+
+## Docker (Run Both Services)
+
+1) Update backend env values in `docker-compose.yml`.
+2) Run:
+
+```bash
+docker compose up --build
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Backend:
+
+```text
+http://localhost:5000
 ```
 
 ## Scripts
