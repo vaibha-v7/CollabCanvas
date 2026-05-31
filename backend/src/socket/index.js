@@ -6,11 +6,17 @@ import { registerRoomHandlers }   from './handlers/room.handler.js';
 import { registerCanvasHandlers } from './handlers/canvas.handler.js';
 import { registerCursorHandlers } from './handlers/cursor.handler.js';
 
-export const initSocket = async (httpServer, clientOrigins) => {
+export const initSocket = async (httpServer, isAllowedOrigin) => {
   await connectRedis();
 
   const io = new Server(httpServer, {
-    cors: { origin: clientOrigins, credentials: true }
+    cors: {
+      origin(origin, callback) {
+        if (isAllowedOrigin(origin)) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+      },
+      credentials: true,
+    }
   });
 
   io.adapter(createAdapter(redisPub, redisSub));

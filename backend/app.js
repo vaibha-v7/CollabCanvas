@@ -20,14 +20,28 @@ if (missingEnv.length) {
 }
 
 const PORT = process.env.PORT || 5000;
-const clientOrigins = process.env.CLIENT_URL.split(',').map(origin => origin.trim()).filter(Boolean);
+const normalizeOrigin = (origin) => origin?.trim().replace(/\/$/, '');
+const clientOrigins = process.env.CLIENT_URL
+  .split(',')
+  .map(normalizeOrigin)
+  .filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+  const normalizedOrigin = normalizeOrigin(origin);
+
+  return (
+    !normalizedOrigin ||
+    clientOrigins.includes(normalizedOrigin) ||
+    /^https:\/\/collab-canvas-[a-z0-9-]+\.vercel\.app$/i.test(normalizedOrigin)
+  );
+};
 
 const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || clientOrigins.includes(origin)) return callback(null, true);
+    if (isAllowedOrigin(origin)) return callback(null, true);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
@@ -45,7 +59,7 @@ app.use(errorHandler);
 
 const startServer = async () => {
   await connectDB();
-  await initSocket(httpServer, clientOrigins);
+  await initSocket(httpServer, isAllowedOrigin);
   httpServer.listen(PORT, () =>
     console.log(`Server running on port ${PORT}`)
   );
