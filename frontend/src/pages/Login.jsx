@@ -7,12 +7,12 @@ import {
   EyeOff,
   Lock,
   Mail,
-  Palette,
   Sparkles,
   Users,
 } from 'lucide-react';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/shared/Logo';
 
 export default function Login() {
   const { login } = useAuth();
@@ -49,7 +49,7 @@ export default function Login() {
         <section className="hidden lg:block">
           <Link to="/" className="mb-14 inline-flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white shadow-lg shadow-slate-900/20">
-              <Palette className="h-5 w-5" aria-hidden="true" />
+              <Logo className="h-5 w-5" />
             </span>
             <span>
               <span className="block text-xl font-semibold tracking-normal">CollabCanvas</span>
@@ -76,7 +76,7 @@ export default function Login() {
                 <p className="mt-1 text-sm leading-6 text-slate-500">Your collaborative spaces stay organized and ready.</p>
               </div>
               <div className="rounded-lg border border-white/70 bg-white/70 p-4 shadow-sm backdrop-blur">
-                <Palette className="mb-4 h-5 w-5 text-teal-600" aria-hidden="true" />
+                <Logo className="mb-4 h-5 w-5 text-slate-950" />
                 <p className="text-sm font-semibold text-slate-900">Personal cursor</p>
                 <p className="mt-1 text-sm leading-6 text-slate-500">Every participant remains easy to spot.</p>
               </div>
@@ -88,7 +88,7 @@ export default function Login() {
           <div className="mb-8 text-center lg:hidden">
             <Link to="/" className="inline-flex items-center gap-3">
               <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white shadow-lg shadow-slate-900/20">
-                <Palette className="h-5 w-5" aria-hidden="true" />
+                <Logo className="h-5 w-5" />
               </span>
               <span className="text-xl font-semibold tracking-normal">CollabCanvas</span>
             </Link>

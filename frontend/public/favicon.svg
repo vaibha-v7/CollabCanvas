@@ -1,15 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CollabCanvas">
-  <defs>
-    <linearGradient id="bg" x1="8" x2="56" y1="8" y2="56" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#111827"/>
-      <stop offset="1" stop-color="#4338ca"/>
-    </linearGradient>
-    <linearGradient id="stroke" x1="19" x2="45" y1="43" y2="21" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2dd4bf"/>
-      <stop offset="1" stop-color="#a5b4fc"/>
-    </linearGradient>
-  </defs>
-  <rect width="56" height="56" x="4" y="4" fill="url(#bg)" rx="14"/>
-  <path fill="#fff" d="M18 18.5A4.5 4.5 0 0 1 22.5 14h19a4.5 4.5 0 0 1 4.5 4.5v15a4.5 4.5 0 0 1-4.5 4.5H31.9l-7.4 6.2A1.5 1.5 0 0 1 22 43.05V38a4 4 0 0 1-4-4V18.5Z"/>
-  <path fill="url(#stroke)" d="M23 26.5c0-2.5 2-4.5 4.5-4.5h2.8a2 2 0 0 1 0 4h-2.8a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h2.8a2 2 0 1 1 0 4h-2.8a4.5 4.5 0 0 1-4.5-4.5v-4Zm13.7-4.5h2.8A4.5 4.5 0 0 1 44 26.5v4a4.5 4.5 0 0 1-4.5 4.5h-2.8a2 2 0 1 1 0-4h2.8a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-2.8a2 2 0 1 1 0-4Z"/>
+  <rect width="64" height="64" rx="14" fill="#0b0b0b"/>
+  <path d="M40 18h-10a14 14 0 0 0 0 28h10" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M34 24h-8a8 8 0 0 0 0 16h8" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

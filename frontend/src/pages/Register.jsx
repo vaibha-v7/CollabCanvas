@@ -8,13 +8,13 @@ import {
   EyeOff,
   Lock,
   Mail,
-  Palette,
   PenLine,
   Sparkles,
   User,
 } from 'lucide-react';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/shared/Logo';
 
 const COLORS = [
   '#534AB7', '#0F6E56', '#993C1D',
@@ -66,7 +66,7 @@ export default function Register() {
           <div className="mb-8 text-center lg:hidden">
             <Link to="/" className="inline-flex items-center gap-3">
               <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white shadow-lg shadow-slate-900/20">
-                <Palette className="h-5 w-5" aria-hidden="true" />
+                <Logo className="h-5 w-5" />
               </span>
               <span className="text-xl font-semibold tracking-normal">CollabCanvas</span>
             </Link>
@@ -209,7 +209,7 @@ export default function Register() {
         <section className="hidden lg:block">
           <Link to="/" className="mb-14 inline-flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white shadow-lg shadow-slate-900/20">
-              <Palette className="h-5 w-5" aria-hidden="true" />
+              <Logo className="h-5 w-5" />
             </span>
             <span>
               <span className="block text-xl font-semibold tracking-normal">CollabCanvas</span>

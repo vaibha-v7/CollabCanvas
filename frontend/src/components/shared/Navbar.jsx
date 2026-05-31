@@ -1,5 +1,6 @@
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Logo from './Logo';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -12,7 +13,12 @@ export default function Navbar() {
 
   return (
     <nav className="h-14 bg-white border-b border-gray-200 flex items-center px-6 gap-4">
-      <span className="font-semibold text-black text-base tracking-normal">CollabCanvas</span>
+      <div className="flex items-center gap-2 text-black">
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-black text-white">
+          <Logo className="h-4 w-4" />
+        </span>
+        <span className="font-semibold text-black text-base tracking-normal">CollabCanvas</span>
+      </div>
       <div className="flex-1" />
       <div className="flex items-center gap-3">
         <div

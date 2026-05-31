@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   DoorOpen,
   LogOut,
-  Palette,
   Plus,
   Search,
   Sparkles,
@@ -14,6 +13,7 @@ import api from '../api/axios';
 import RoomCard from '../components/lobby/RoomCard';
 import CreateRoomModal from '../components/lobby/CreateRoomModal';
 import JoinRoomModal from '../components/lobby/JoinRoomModal';
+import Logo from '../components/shared/Logo';
 
 export default function Lobby() {
   const [rooms, setRooms] = useState([]);
@@ -67,7 +67,7 @@ export default function Lobby() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-lg bg-slate-950 text-white shadow-lg shadow-slate-900/15">
-              <Palette className="h-5 w-5" aria-hidden="true" />
+              <Logo className="h-5 w-5" />
             </span>
             <div>
               <p className="text-base font-semibold tracking-normal text-slate-950">CollabCanvas</p>
