@@ -18,7 +18,8 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) return fail(res, 'Email and password required');
-    const user = await User.findOne({ email });
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
     if (!user) return fail(res, 'Account does not exist', 404);
     if (!(await user.comparePassword(password))) return fail(res, 'Wrong password', 401);
     await User.findByIdAndUpdate(user._id, { lastActiveAt: new Date() });
