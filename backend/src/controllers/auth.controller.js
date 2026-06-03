@@ -4,12 +4,29 @@ import { ok, fail } from '../utils/ApiResponse.js';
 
 export const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, displayColor } = req.body;
     if (!username || !email || !password) return fail(res, 'All fields required');
-    if (await User.findOne({ email })) return fail(res, 'Email already in use');
-    const user = await User.create({ username, email, passwordHash: password });
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const normalizedUsername = String(username).trim();
+    const existingUser = await User.findOne({
+      $or: [{ email: normalizedEmail }, { username: normalizedUsername }],
+    });
+    if (existingUser) {
+      if (existingUser.email === normalizedEmail) return fail(res, 'Email already in use');
+      return fail(res, 'Username already in use');
+    }
+    const user = await User.create({
+      username: normalizedUsername,
+      email: normalizedEmail,
+      passwordHash: password,
+      displayColor,
+    });
     ok(res, { token: signToken(user._id), user: user.toPublic() }, 201);
   } catch (err) {
+    if (err?.code === 11000) {
+      const field = Object.keys(err.keyPattern || {})[0] || 'field';
+      return fail(res, `${field} already in use`, 409);
+    }
     return fail(res, err.message || 'Server error', 500);
   }
 };
