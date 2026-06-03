@@ -8,6 +8,7 @@ import {
   EyeOff,
   Lock,
   Mail,
+  Palette,
   PenLine,
   Sparkles,
   User,
